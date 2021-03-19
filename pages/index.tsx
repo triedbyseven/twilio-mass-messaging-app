@@ -77,7 +77,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>My page title</title>
+        <title>Bulk Message App</title>
         <meta name="robots" content="noindex" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>

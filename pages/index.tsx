@@ -50,7 +50,7 @@ export default function Home() {
   const sendMessagesOnSubmit = async (): Promise<void> => {
     try {
       setIsSubmitting(true);
-      const response = await fetch('http://localhost:3000/api/twilio',{
+      const response = await fetch(`${process.env.API_ENDPOINT}/api/twilio`,{
         method: 'POST',
         body: JSON.stringify({ phoneNumbers: phoneNumbers, message: textMessage }),
         headers: {

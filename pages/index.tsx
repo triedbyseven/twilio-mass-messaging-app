@@ -6,6 +6,7 @@ import { AddPhoneNumberForm, TextMessage } from '../components/section';
 import { v4 as uuid } from 'uuid';
 import fetch from 'isomorphic-fetch';
 import Image from 'next/image';
+import Head from 'next/head';
 
 interface HomeState {
   id: string;
@@ -74,31 +75,38 @@ export default function Home() {
   };
 
   return (
-    <div className="p-4 sm:p-0 container mx-auto h-full flex flex-wrap justify-center content-center">
-      <div className="w-full lg pb-0 shadow-md rounded-md" style={{ maxWidth: 512 }}>
-        <div className="px-4 py-5 bg-violet space-y-6 sm:p-6 justify-center flex rounded-t-lg">
-          <Image
-            src="/logo-joymd.png"
-            alt="Picture of the author"
-            width={134}
-            height={60}
-          />
-        </div>
-        <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
-          <ListSimple rows={phoneNumbers} deletePhoneNumber={deletePhoneNumber} />
-          <div>
-            <Label text="Phone Number" htmlFor="phone" />
-            <LabelDescription description="A customers 10-digit cellular number. International phone numbers are not supported at this time." />
-            <AddPhoneNumberForm addPhoneNumber={addPhoneNumber} isSubmitted={isSubmitted} />
-            <Label text="Message" htmlFor="text_message" />
-            <LabelDescription description="Write a message that every customer on your list will recieve." />
-            <TextMessage name="text_message" setTextMessage={setTextMessage} isSyncing={isSyncing} setSyncing={setSyncing} />
-          </div>         
-        </div>
-        <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-          <ButtonPrimary onClick={sendMessagesOnSubmit} label="Send Text" disabled={phoneNumbers.length === 0 || isSyncing || !textMessage || isSubmitted}/>
+    <>
+      <Head>
+        <title>My page title</title>
+        <meta name="robots" content="noindex" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <div className="p-4 sm:p-0 container mx-auto h-full flex flex-wrap justify-center content-center">
+        <div className="w-full lg pb-0 shadow-md rounded-md" style={{ maxWidth: 512 }}>
+          <div className="px-4 py-5 bg-violet space-y-6 sm:p-6 justify-center flex rounded-t-lg">
+            <Image
+              src="/logo-joymd.png"
+              alt="Picture of the author"
+              width={134}
+              height={60}
+            />
+          </div>
+          <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+            <ListSimple rows={phoneNumbers} deletePhoneNumber={deletePhoneNumber} />
+            <div>
+              <Label text="Phone Number" htmlFor="phone" />
+              <LabelDescription description="A customers 10-digit cellular number. International phone numbers are not supported at this time." />
+              <AddPhoneNumberForm addPhoneNumber={addPhoneNumber} isSubmitted={isSubmitted} />
+              <Label text="Message" htmlFor="text_message" />
+              <LabelDescription description="Write a message that every customer on your list will recieve." />
+              <TextMessage name="text_message" setTextMessage={setTextMessage} isSyncing={isSyncing} setSyncing={setSyncing} />
+            </div>         
+          </div>
+          <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <ButtonPrimary onClick={sendMessagesOnSubmit} label="Send Text" disabled={phoneNumbers.length === 0 || isSyncing || !textMessage || isSubmitted}/>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 };

@@ -23,10 +23,9 @@ const AddPhoneNumberForm: React.FC<AddPhoneNumberFormProps> = (props): React.Rea
     if (value.length === 4) {
       var res = value.split("", 4);
       res = ["(", res[0], res[1], res[2], ")", " ", res[3] ]
-      console.log(res.join(''));
       phoneNumber = res.join('');
     }
-    
+
     if (value.length === 6) {
       phoneNumber = phoneNumber.slice(1);
       phoneNumber = phoneNumber.slice(0, -1);
@@ -46,7 +45,7 @@ const AddPhoneNumberForm: React.FC<AddPhoneNumberFormProps> = (props): React.Rea
 
   const handleOnKeyDown = (e: any): void => {
     console.log(e.keyCode);
-    if (e.keyCode === 16 || e.keyCode === 17 || e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40 || e.keyCode === 65) {
+    if (e.keyCode === 16 || e.keyCode === 17 || e.keyCode === 32  || e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40 || e.keyCode === 65) {
       e.preventDefault();
     }
   };
